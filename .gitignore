@@ -37,8 +37,6 @@ AirWatch/.idea/
 AirWatch/gradlew/
 AirWatch/gradlew.bat
 AirWatch/gradle.properties
-AirWatch/settings.gradle
-AirWatch/gradlew
 AirWatch/gradle/wrapper/gradle-wrapper.properties
 AirWatch/gradle/wrapper/gradle-wrapper.jar
 AirWatch/app/proguard-rules.pro
