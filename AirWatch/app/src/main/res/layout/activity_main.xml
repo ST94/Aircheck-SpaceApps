@@ -60,13 +60,12 @@
             android:layout_marginBottom="5dp"
             android:layout_below="@id/averageSymptomsField">
             <TextView
-                android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Temperature"
                 style="@style/field_text"/>
             <TextView
-                android:id="@+id/temp_value"
+                android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/value_text"
@@ -79,12 +78,12 @@
             android:layout_below="@+id/temperatureField"
             android:layout_marginBottom="5dp">
             <TextView
-                android:id="@+id/humdity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Humidity"
                 style="@style/field_text"/>
             <TextView
+                android:id="@+id/humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/value_text"

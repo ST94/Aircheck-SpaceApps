@@ -103,15 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        mTemperatureText = (TextView) findViewById(R.id.temperature);
-        mTemperatureText.setText(mAirQuality.temp);
-
-        mHumidityText = (TextView) findViewById(R.id.humdity);
-        mHumidityText.setText(mAirQuality.humdity);
-
-        mAirQualityLevelText = (TextView) findViewById(R.id.air_quality);
-        mAirQualityLevelText.setText(mAirQuality.airQuality);
     }
 
     @Override
@@ -224,6 +215,15 @@ public class MainActivity extends AppCompatActivity {
                             Log.i(TAG, "onResponse: Transaction Complete GCM Message" + response.toString());
                             Gson gson = new Gson();
                             mAirQuality = gson.fromJson (response.toString(), AirQuality.class);
+
+                            mTemperatureText = (TextView) findViewById(R.id.temperature);
+                            mTemperatureText.setText(mAirQuality.temp);
+
+                            mHumidityText = (TextView) findViewById(R.id.humidity);
+                            mHumidityText.setText(mAirQuality.humidity);
+
+                            mAirQualityLevelText = (TextView) findViewById(R.id.air_quality);
+                            mAirQualityLevelText.setText(mAirQuality.airQuality);
                         }
                     },
                     new Response.ErrorListener() {
