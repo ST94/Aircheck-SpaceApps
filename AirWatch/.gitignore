@@ -1,3 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+/idea
+/local.properties
+/application/build
+
 # Built application files
 *.apk
 *.ap_
@@ -30,15 +42,4 @@ proguard/
 
 # Android Studio captures folder
 captures/
-AirWatch/.idea/modules.xml
-AirWatch/.idea/.name
-AirWatch/.idea/compiler.xml
-AirWatch/.idea/
-AirWatch/gradlew/
-AirWatch/gradlew.bat
-AirWatch/gradle.properties
-AirWatch/settings.gradle
-AirWatch/gradlew
-AirWatch/gradle/wrapper/gradle-wrapper.properties
-AirWatch/gradle/wrapper/gradle-wrapper.jar
-AirWatch/app/proguard-rules.pro
+
