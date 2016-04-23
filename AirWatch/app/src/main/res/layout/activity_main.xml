@@ -102,6 +102,7 @@
                 android:text="Air Pollution"
                 style="@style/field_text"/>
             <TextView
+                android:id="@+id/air_quality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/value_text"

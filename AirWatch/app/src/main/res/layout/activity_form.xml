@@ -42,6 +42,7 @@
         android:text="Shortness of Breath"/>
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/breath_slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_min="0"
@@ -55,6 +56,7 @@
         android:text="Wheezing"/>
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/wheezing_slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_min="0"
@@ -68,6 +70,7 @@
         android:text="Sneezing"/>
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/sneezing_slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_min="0"
@@ -81,6 +84,7 @@
         android:text="Nasal Obstructions"/>
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/nasal_slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_min="0"
@@ -94,9 +98,23 @@
         android:text="Itchy Eyes"/>
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/eyes_slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:dsb_min="0"
-        app:dsb_max="10" />
+        app:dsb_max="10"
+        android:layout_marginBottom="25dp"/>
+
+    <Button
+        android:id="@+id/send_form_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/report_symptoms"
+        android:textColor="@android:color/white"
+        android:theme="@style/ButtonNormal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
 
 </LinearLayout>
