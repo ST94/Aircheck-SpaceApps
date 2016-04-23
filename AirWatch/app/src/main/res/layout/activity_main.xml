@@ -19,14 +19,14 @@
         android:text="Air Conditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textColor="@android:color/black"
         android:layout_centerHorizontal="true"/>
     <TextView
         android:id="@+id/country_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:text="COUNTRY"
         android:layout_below="@id/Header"
         android:layout_centerHorizontal="true"/>
@@ -35,16 +35,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/country_name">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/averageSymptomsField"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average Symptom Levels"
+                style="@style/field_text"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/value_text"
+                android:text="100" />
+        </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/temperatureField"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/averageSymptomsField">
             <TextView
                 android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature"/>
+                android:text="Temperature"
+                style="@style/field_text"/>
             <TextView
                 android:id="@+id/temp_value"
                 android:layout_width="wrap_content"
@@ -62,7 +82,8 @@
                 android:id="@+id/humdity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Humidity"/>
+                android:text="Humidity"
+                style="@style/field_text"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,22 +99,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Air Pollution"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/value_text"
-                android:text="100"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/averageSymptomsField"
-            android:layout_below="@+id/airPollutionField">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Average Symptom Levels"/>
+                android:text="Air Pollution"
+                style="@style/field_text"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

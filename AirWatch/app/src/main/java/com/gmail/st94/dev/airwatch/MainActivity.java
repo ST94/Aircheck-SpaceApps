@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,21 +36,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         // Get the location passed to this service through an extra.
-
         Location location = getLastKnownLocation();
-
         List<Address> addresses = null;
         String errorMessage = "";
-
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             Address address = addresses.get(0);
             Log.i(TAG, getString(R.string.address_found));
             mCountryOutput = address.getCountryName();
             mCity = address.getLocality();
+            TextView locationName = (TextView) findViewById(R.id.country_name);
+            locationName.setText(mCity.toUpperCase() + ", " + mCountryOutput.toUpperCase());
         } catch (IOException ioException) {
             // Catch network or other I/O problems.
             errorMessage = getString(R.string.no_address_found);

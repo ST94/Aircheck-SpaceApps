@@ -10,6 +10,11 @@
 
     <style name="value_text"  parent="@android:style/Widget.TextView">
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="field_text"  parent="@android:style/Widget.TextView">
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="ButtonNormal" parent="Theme.AppCompat.Light">
