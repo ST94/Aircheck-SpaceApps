@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AirWatch</string>
+    <string name="search_title">Find Country</string>
+    <string name="title_activity_maps">Map</string>
+    <string name ="address_found">address found</string>
+    <string name="no_address_found">no address found</string>
+    <string name="report_symptoms">Report Symptoms</string>
 </resources>

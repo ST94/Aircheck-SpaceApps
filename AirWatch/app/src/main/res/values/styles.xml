@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="value_text"  parent="@android:style/Widget.TextView">
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="ButtonNormal" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+    </style>
+
 </resources>
