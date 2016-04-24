@@ -205,6 +205,10 @@ public class FormActivity extends AppCompatActivity {
                     Log.e(TAG, "Failed to connect to server to send gcm token");
                     // display error
                 }
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                i.putExtra("submit_flag", true);
+                startActivity (i);
+
             }
         });
 

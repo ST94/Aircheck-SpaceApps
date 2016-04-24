@@ -5,4 +5,5 @@
     <string name ="address_found">address found</string>
     <string name="no_address_found">no address found</string>
     <string name="report_symptoms">Report Symptoms</string>
+    <string name="search_hint">Enter a country</string>
 </resources>

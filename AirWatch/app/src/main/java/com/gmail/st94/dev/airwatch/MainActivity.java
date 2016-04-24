@@ -3,17 +3,22 @@ package com.gmail.st94.dev.airwatch;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+//import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,14 +32,17 @@ import com.android.volley.toolbox.Volley;
 import com.gmail.st94.dev.airwatch.Models.AirQuality;
 import com.gmail.st94.dev.airwatch.Models.SymptomLevels;
 import com.gmail.st94.dev.airwatch.Models.UserModel;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
     TextView mHumidityText;
     TextView mAirQualityLevelText;
 
+    TextView mCoughing;
+    TextView mBreathing;
+    TextView mWheezing;
+    TextView mSneezing;
+    TextView mNasal;
+    TextView mEyes;
+
+    RelativeLayout mMainLayout;
+
+    View mGradientBar;
+    TextView mGradientText;
+    Geocoder geocoder;
+
     LocationManager mLocationManager;
 
     @Override
@@ -60,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        geocoder = new Geocoder(this, Locale.getDefault());
         // Get the location passed to this service through an extra.
         Location location = getLastKnownLocation();
         List<Address> addresses = null;
@@ -78,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             mUser.longitude = Double.toString(round(location.getLongitude(), 2));
             mUser.latitude = Double.toString(round(location.getLatitude(), 2));
             getAirQualityValues(mUser.latitude, mUser.longitude);
-            getAverageSymptomLevels();
+            getAverageSymptomLevels(mUser.latitude, mUser.longitude);
 
         } catch (IOException ioException) {
             // Catch network or other I/O problems.
@@ -106,6 +127,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume (){
+        super.onResume();
+
+        Intent intent = getIntent();
+        boolean messageFlag = intent.getBooleanExtra("submit_flag", false );
+//        if (messageFlag) {
+//            mMainLayout = (RelativeLayout) findViewById(R.id.main_activity_layout);
+//            Snackbar snackbar = Snackbar
+//                    .make(mMainLayout, "Welcome to AndroidHive", Snackbar.LENGTH_LONG);
+//
+//            snackbar.show();
+//        }
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
@@ -128,6 +165,45 @@ public class MainActivity extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             //use the query to search your data somehow
+            updateUIWithValues (query);
+        }
+    }
+
+    private void updateUIWithValues (String searchQuery){
+
+        if(Geocoder.isPresent()){
+            try {
+                String location = searchQuery;
+                Geocoder gc = new Geocoder(this);
+                List<Address> addresses= gc.getFromLocationName(location, 5); // get the found Address Objects
+
+                Address address = addresses.get(0);
+                Log.i(TAG, getString(R.string.address_found));
+                mCountryOutput = address.getCountryName();
+                mCity = address.getAdminArea();
+                TextView locationName = (TextView) findViewById(R.id.country_name);
+                locationName.setText(mCity.toUpperCase() + ", " + mCountryOutput.toUpperCase());
+                mUser.city = mCity;
+                mUser.country = mCountryOutput;
+
+
+                List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
+                for(Address a : addresses){
+                    if(a.hasLatitude() && a.hasLongitude()){
+                        ll.add(new LatLng(a.getLatitude(), a.getLongitude()));
+                    }
+                }
+
+                getAirQualityValues(Double.toString(ll.get(0).latitude), Double.toString(ll.get(0).longitude));
+                getAverageSymptomLevels(Double.toString(ll.get(0).latitude), Double.toString(ll.get(0).longitude));
+
+                mUser.latitude = Double.toString(ll.get(0).latitude);
+                mUser.longitude = Double.toString(ll.get(0).longitude);
+
+            } catch (IOException e) {
+                // handle the exception
+                Log.i(TAG, e.toString());
+            }
         }
     }
 
@@ -163,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         return bd.doubleValue();
     }
 
-    private void getAverageSymptomLevels() {
+    private void getAverageSymptomLevels(String latitude, String longitude) {
         RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -172,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         {
             // fetch data
             JsonObjectRequest gcmNotificationRequest = new JsonObjectRequest(
-                    Constants.SERVER_URL + Constants.SERVER_COMPLETE_GET_LOCAL_SYMPTOMS,
+                    Constants.SERVER_URL + Constants.SERVER_COMPLETE_GET_LOCAL_SYMPTOMS +"?lat=" + latitude +"&lon="+longitude,
                     null,
                     new Response.Listener<JSONObject>()
                     {
@@ -181,6 +257,46 @@ public class MainActivity extends AppCompatActivity {
                             Log.i(TAG, "onResponse: Transaction Complete GCM Message" + response.toString());
                             Gson gson = new Gson();
                             mSymptomLevels = gson.fromJson (response.toString(), SymptomLevels.class);
+
+                            mCoughing = (TextView) findViewById(R.id.coughing_value);
+                            mCoughing.setText(Double.toString(mSymptomLevels.cough));
+
+                            mBreathing = (TextView) findViewById(R.id.breath_value);
+                            mBreathing.setText(Double.toString(mSymptomLevels.shortnessOfBreath));
+
+                            mWheezing = (TextView) findViewById(R.id.wheezing_value);
+                            mWheezing.setText(Double.toString(mSymptomLevels.wheezing));
+
+                            mSneezing = (TextView) findViewById(R.id.sneezing_value);
+                            mSneezing.setText(Double.toString(mSymptomLevels.sneezing));
+
+                            mNasal = (TextView) findViewById(R.id.nasal_value);
+                            mNasal.setText(Double.toString(mSymptomLevels.nasalObstruction));
+
+                            mEyes = (TextView) findViewById(R.id.eyes_value);
+                            mEyes.setText(Double.toString(mSymptomLevels.itchyEyes));
+
+                            double average = mSymptomLevels.cough + mSymptomLevels.shortnessOfBreath + mSymptomLevels.wheezing
+                                    + mSymptomLevels.sneezing + mSymptomLevels.nasalObstruction + mSymptomLevels.itchyEyes;
+                            average = round (average / 6, 2);
+                            double percentage = round (average / 10, 2);
+
+                            mGradientText = (TextView) findViewById(R.id.colored_bar_text);
+                            mGradientText.setText(Double.toString(average));
+
+                            Resources r = getApplicationContext().getResources();
+                            int px = (int) TypedValue.applyDimension(
+                                    TypedValue.COMPLEX_UNIT_DIP,
+                                    (float) percentage * 305,
+                                    r.getDisplayMetrics()
+                            );
+
+                            mGradientBar = findViewById(R.id.colored_bar);
+
+
+                            setMargins(mGradientBar, px, 0, 0, 0);
+                            setMargins(mGradientText, px - 30, 0, 0, 0);
+                            //mGradientBar.setLayoutParams(params);
                         }
                     },
                     new Response.ErrorListener() {
@@ -193,6 +309,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "Failed to connect to server to send gcm token");
             // display error
+        }
+    }
+
+    public static void setMargins (View v, int l, int t, int r, int b) {
+        if (v.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            p.setMargins(l, t, r, b);
+            v.requestLayout();
         }
     }
 
@@ -217,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
                             mAirQuality = gson.fromJson (response.toString(), AirQuality.class);
 
                             mTemperatureText = (TextView) findViewById(R.id.temperature);
-                            mTemperatureText.setText(mAirQuality.temp);
+                            mTemperatureText.setText(Integer.toString ((int) (Math.round(Double.parseDouble(mAirQuality.temp)))));
 
                             mHumidityText = (TextView) findViewById(R.id.humidity);
                             mHumidityText.setText(mAirQuality.humidity);

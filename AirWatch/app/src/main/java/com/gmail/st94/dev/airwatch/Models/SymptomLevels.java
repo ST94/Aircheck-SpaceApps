@@ -9,6 +9,7 @@ public class SymptomLevels {
     public double cough;
     public double nasalObstruction;
     public double itchyEyes;
+    public double sneezing;
 
     public SymptomLevels ()
     {

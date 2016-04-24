@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_action_icons_tint">#5a6518</color>
+
+    <color name="High">#4caf50</color>
+    <color name="Medium">#ffeb3b</color>
+    <color name="Low">#f44336</color>
 </resources>

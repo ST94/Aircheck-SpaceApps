@@ -14,55 +14,250 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content">-->
     <!--</SearchView>-->
-    <TextView
+    <!--<TextView
         android:id="@+id/Header"
         android:text="Air Conditions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textColor="@android:color/black"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"/>-->
     <TextView
         android:id="@+id/country_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="COUNTRY"
-        android:layout_below="@id/Header"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"/>
+
+    <RelativeLayout
+        android:id="@+id/symptom_levels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/country_name"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average severity of symptoms in the area"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/severity_message"
+            android:layout_marginBottom="15dp"
+            style="@style/SymptomText"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/severity_message"
+            android:id="@+id/coughing_layout">
+            <TextView
+                android:id="@+id/coughing_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Coughing"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText"/>
+            <TextView
+                android:id="@+id/coughing_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/coughing_field"
+                style="@style/SymptomValue"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/severity_message"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/breath_layout"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:id="@+id/breath_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Difficulty Breathing"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText"/>
+            <TextView
+                android:id="@+id/breath_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/breath_field"
+                style="@style/SymptomValue"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/severity_message"
+            android:layout_alignParentRight="true"
+            android:id="@+id/wheezing_layout">
+            <TextView
+                android:id="@+id/wheezing_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wheezing"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText"/>
+            <TextView
+                android:id="@+id/wheezing_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/wheezing_field"
+                style="@style/SymptomValue"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/breath_layout"
+            android:id="@+id/sneezing_layout">
+            <TextView
+                android:id="@+id/sneezing_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sneezing"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText"/>
+            <TextView
+                android:id="@+id/sneezing_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/sneezing_field"
+                style="@style/SymptomValue" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/breath_layout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/nasal_obstruction_layout">
+            <TextView
+                android:id="@+id/nasal_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nasal Obstructions"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText"/>
+            <TextView
+                android:id="@+id/nasal_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/nasal_field"
+                style="@style/SymptomValue"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/breath_layout"
+            android:layout_alignParentRight="true"
+            android:id="@+id/eyes_layout">
+            <TextView
+                android:id="@+id/eyes_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Itchy Eyes"
+                android:layout_marginBottom="5dp"
+                style="@style/SymptomText" />
+            <TextView
+                android:id="@+id/eyes_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/eyes_field"
+                style="@style/SymptomValue"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overall Symptom Severity"
+        android:layout_below="@id/symptom_levels"
+        android:id="@+id/overall_severity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overall_severity"
+        android:id="@+id/symptom_gradient_layout"
+        android:layout_marginBottom="0dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/gradient"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/average_symptoms_bar"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <View
+            android:id="@+id/colored_bar"
+            android:layout_width="5dp"
+            android:layout_height="26dp"
+            android:background="@android:color/black"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="0dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:layout_below="@id/colored_bar"
+            android:paddingTop="15dp"
+            android:id="@+id/colored_bar_text"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/country_name">
+        android:layout_below="@+id/symptom_gradient_layout"
+        android:id="@+id/air_quality_layout">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/averageSymptomsField"
-            android:layout_marginBottom="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Average Symptom Levels"
-                style="@style/field_text"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/value_text"
-                android:text="100" />
-        </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/averageSymptomsField"-->
+            <!--android:layout_marginBottom="5dp">-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Average Symptom Levels"-->
+                <!--style="@style/field_text"/>-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--style="@style/value_text"-->
+                <!--android:text="100" />-->
+        <!--</RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/temperatureField"
-            android:layout_marginBottom="5dp"
-            android:layout_below="@id/averageSymptomsField">
+            android:layout_marginBottom="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature"
+                android:text="Temperature (°C)"
                 style="@style/field_text"/>
             <TextView
                 android:id="@+id/temperature"
@@ -98,7 +293,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Air Pollution"
+                android:text="Air Quality Index"
                 style="@style/field_text"/>
             <TextView
                 android:id="@+id/air_quality"
