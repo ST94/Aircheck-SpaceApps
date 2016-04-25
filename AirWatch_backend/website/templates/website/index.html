@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+    <link href="{% static "website/css/jquery-ui.min.css" %}" rel="stylesheet">
+    <link href="{% static "website/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "website/css/style.css" %}" rel="stylesheet">
+
+    <script type='text/javascript' src='{% static 'website/js/jquery-2.2.1.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'website/bootstrap/js/bootstrap.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'website/js/jquery-ui.min.js' %}'></script>
+    <script type='text/javascript' src='{% static 'website/js/underscore-min.js' %}'></script>        
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script type='text/javascript' src='{% static 'website/js/datamaps.world.min.js' %}'></script>        
+
+    <script type='text/javascript' src='{% static 'website/scripts.js' %}'></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <title>airWatch</title>
+</head>
+
+<body>
+    <div class="btn-group-vertical legend" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" id="cough">Cough</button>
+        <button type="button" class="btn btn-default" id="shortnessOfBreath">Shortness of Breath</button>
+        <button type="button" class="btn btn-default" id="wheezing">Wheezing</button>
+        <button type="button" class="btn btn-default" id="sneezing">Sneezing</button>
+        <button type="button" class="btn btn-default" id="nasalObstruction">Nasal Obstruction</button>
+        <button type="button" class="btn btn-default" id="itchyEyes">Itchy Eyes</button>
+    </div>
+    <div class="map" id="basic_choropleth" style="position: relative;left:10%; width: 80%; height: 800px;"></div>
+
+    <script>
+    var basic_choropleth = new Datamap({
+        element: document.getElementById("basic_choropleth"),
+        projection: 'mercator',
+        geographyConfig: {
+            popupOnHover: false,
+            highlightOnHover: false
+        },
+        fills: {
+            defaultFill: '#D3D3D3',
+            cough: 'blue',
+            shortnessOfBreath: 'green',
+            wheezing: 'yellow',
+            sneezing: 'red',
+            nasalObstruction: 'orange',
+            itchyEyes: 'white',
+            severity0: '#00FF00', 
+            severity1: '#33FF00', 
+            severity2: '#66FF00', 
+            severity3: '#99FF00', 
+            severity4: '#CCFF00', 
+            severity5: '#FFFF00', 
+            severity6: '#FFAA00', 
+            severity7: '#FF7F00', 
+            severity8: '#FF5500', 
+            severity9: '#FF2A00', 
+            severity10: '#FF0000'
+
+        },
+    });
+    </script>
+</body>
+
+</html>
