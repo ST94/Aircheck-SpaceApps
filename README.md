@@ -4,12 +4,12 @@ AirWatch is a mobile and web application built to crowd-source local weather con
 
 Some of the main features of AirWatch are the following:
 
-*AirWatch's built to be able to be integrated into many different services through the use of an open API system. Through the API system users can retrieve and store data about the air quality in any interested area.
-*Visualize how polluted one area is comparing to others through people's symptoms report
-*Browse and view the average symptoms rating for each area based on user input
+* AirWatch's built to be able to be integrated into many different services through the use of an open API system. Through the API system users can retrieve and store data about the air quality in any interested area.
+* Visualize how polluted one area is comparing to others through people's symptoms report
+* Browse and view the average symptoms rating for each area based on user input
 
 Air Watch's technical specifications:
 
-*Backend: Django
-*Website: JS/Jquery/D3.js
-*Android App
+* Backend: Django
+* Website: JS/Jquery/D3.js
+* Android App
